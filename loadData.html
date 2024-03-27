@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
+
+<head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Interactive 3D demo</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.fluid.classless.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css" />
     <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
-  </head>
-  <body style="margin: 0;">
+</head>
+
+<body style="margin: 0;">
     <header>
         <nav>
-            <ul><li><strong>Using Three.js for scientific data visualisation</strong></li></ul>
-            <ul><li><a href="/">Home</a></li></ul>
+            <ul>
+                <li><strong>Using Three.js for scientific data visualisation</strong></li>
+            </ul>
+            <ul>
+                <li><a href="/">Home</a></li>
+            </ul>
         </nav>
     </header>
     <main>
@@ -21,13 +27,13 @@
         The data below is loaded from the <kbd>data.csv</kbd> file found in the repository.
         <table>
             <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">x</th>
-                <th scope="col">y</th>
-                <th scope="col">z</th>
-                <th scope="col">size</th>
-              </tr>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">x</th>
+                    <th scope="col">y</th>
+                    <th scope="col">z</th>
+                    <th scope="col">size</th>
+                </tr>
             </thead>
             <tbody id="tableBody"></tbody>
         </table>
@@ -44,23 +50,24 @@
     </template>
 
     <script type="module">
-      import {loadData} from "./src/loadData.js";
-      loadData("data.csv", data => {
-        console.log(data);
+        import { loadData } from "./src/loadData.js";
+        loadData("data.csv", data => {
+            console.log(data);
 
-        const tableBody = document.getElementById("tableBody");
-        const template = document.getElementById("rowTemplate");
-        for (const d of data) {
-            const row = template.content.cloneNode(true);
-            let td = row.querySelectorAll("th, td");
-            td[0].textContent = d.id;
-            td[1].textContent = d.x;
-            td[2].textContent = d.x;
-            td[3].textContent = d.y;
-            td[4].textContent = d.z;
-            tableBody.appendChild(row)
-        }
-      });
+            const tableBody = document.getElementById("tableBody");
+            const template = document.getElementById("rowTemplate");
+            for (const d of data) {
+                const row = template.content.cloneNode(true);
+                let td = row.querySelectorAll("th, td");
+                td[0].textContent = d.id;
+                td[1].textContent = d.x;
+                td[2].textContent = d.x;
+                td[3].textContent = d.y;
+                td[4].textContent = d.z;
+                tableBody.appendChild(row)
+            }
+        });
     </script>
-  </body>
+</body>
+
 </html>
